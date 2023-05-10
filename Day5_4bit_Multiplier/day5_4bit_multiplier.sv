@@ -13,10 +13,10 @@ module day5_4bit_multiplier(
 
   wire [7:0] s1,s2,s3;
   
-  assign m0={4(a[0])} & b[3:0];
-  assign m1={4(a[1])} & b[3:0];
-  assign m2={4(a[2])} & b[3:0];
-  assign m3={4(a[3])} & b[3:0];
+      assign m0={4{a_in[0]}} & b_in[3:0];
+      assign m1={4{a_in[1]}} & b_in[3:0];
+      assign m2={4{a_in[2]}} & b_in[3:0];
+      assign m3={4{a_in[3]}} & b_in[3:0];
   
   assign s1 = m0 + (m1<<1);
   assign s2 = m1 + (m2<<2);
