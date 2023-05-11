@@ -1,0 +1,42 @@
+`timescale 1ns/1ps
+
+  
+
+module day6_8bit_division(
+     input logic [7:0] A,
+     input logic [7:0] B,
+     output logic [7:0] Quotient,
+     output logic [7:0] Remainder);
+
+ integer i;
+ reg [7:0] divisor ;
+ reg [7:0] dividend ;
+ reg [7:0] temp;
+
+
+ always@(A or B)
+   begin
+      divisor = A;
+      dividend = B;
+       temp = 0;
+      for(i=0;i<8;i=i+1)
+        begin
+           temp = {temp[6:0],dividend[7]};
+           dividend[7:1]= dividend[6:0];
+           temp = temp -divisor;
+           
+           if(temp[7]==1)
+             begin 
+                 dividend =0;
+                 temp = temp + divisor;
+              end 
+            else 
+              begin
+                dividend[0]= 1;
+              end 
+            end 
+
+           Quotient = dividend;
+           Remainder = B - ( divisor - dividend);
+         end 
+   endmodule 
