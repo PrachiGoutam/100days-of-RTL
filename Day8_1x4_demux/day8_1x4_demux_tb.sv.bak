@@ -1,0 +1,29 @@
+`timescale 1ns/1ps
+
+
+
+ module day8_demux_1x4(
+    input logic a_in,
+    input logic [1:0] s,
+    output reg [3:0] y_out);
+
+
+always@(y_out,s)
+    begin
+     case (s)
+       2'b00:begin
+              y_out[0]=a_in; y_out[1]='0; y_out[3:2]='0;
+              end 
+       2'b01 : begin
+                y[1]=a_in; y[0]='0; y[3:2]='0;
+               end 
+       2'b10 : begin
+               y[2]=a_in; y[1:0]='0; y[3]='0;
+               end
+       2'b11 : begin
+               y[3]=a_in; y[2:0]='0;
+               end 
+      endcase
+  end 
+
+ endmodule
